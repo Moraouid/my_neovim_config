@@ -53,11 +53,16 @@ end)
 --
 
 
-
-
--- clang setup
-require('lspconfig').clangd.setup {
-  filetypes = {"c"},
+-- lsp config
+vim.lsp.config.clangd = {
+  cmd = {
+    'clangd',
+    '--clang-tidy',
+    '--background-index',
+    '--offset-encoding=utf-8',
+  },
+  root_markers = { '.git', '.clangd', 'compile_commands.json' },
+  filetypes = { 'c', 'cpp', "objc", "objcpp", "cuda" },
 }
 
 -- Autocommand to save the buffer on CursorHold and CursorHoldI
